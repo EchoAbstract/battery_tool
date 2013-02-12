@@ -10,6 +10,7 @@
 		D3764A0A16C9DAAC0004259F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3764A0916C9DAAC0004259F /* Foundation.framework */; };
 		D3764A0D16C9DAAC0004259F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3764A0C16C9DAAC0004259F /* main.m */; };
 		D3764A1116C9DAAC0004259F /* battery_tool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3764A1016C9DAAC0004259F /* battery_tool.1 */; };
+		D3764A1816C9E1AE0004259F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3764A1716C9E1AE0004259F /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		D3764A0C16C9DAAC0004259F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3764A0F16C9DAAC0004259F /* battery_tool-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "battery_tool-Prefix.pch"; sourceTree = "<group>"; };
 		D3764A1016C9DAAC0004259F /* battery_tool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = battery_tool.1; sourceTree = "<group>"; };
+		D3764A1716C9E1AE0004259F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3764A1816C9E1AE0004259F /* IOKit.framework in Frameworks */,
 				D3764A0A16C9DAAC0004259F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +51,7 @@
 		D37649FD16C9DAAC0004259F = {
 			isa = PBXGroup;
 			children = (
+				D3764A1716C9E1AE0004259F /* IOKit.framework */,
 				D3764A0B16C9DAAC0004259F /* battery_tool */,
 				D3764A0816C9DAAC0004259F /* Frameworks */,
 				D3764A0716C9DAAC0004259F /* Products */,
