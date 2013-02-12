@@ -51,7 +51,6 @@
 		D37649FD16C9DAAC0004259F = {
 			isa = PBXGroup;
 			children = (
-				D3764A1716C9E1AE0004259F /* IOKit.framework */,
 				D3764A0B16C9DAAC0004259F /* battery_tool */,
 				D3764A0816C9DAAC0004259F /* Frameworks */,
 				D3764A0716C9DAAC0004259F /* Products */,
@@ -69,6 +68,7 @@
 		D3764A0816C9DAAC0004259F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3764A1716C9E1AE0004259F /* IOKit.framework */,
 				D3764A0916C9DAAC0004259F /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -246,6 +246,7 @@
 				D3764A1616C9DAAC0004259F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

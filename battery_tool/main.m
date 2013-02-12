@@ -16,7 +16,7 @@
 #import <IOKit/ps/IOPSKeys.h>
 
 
-#define kBatteryNotInstalled -1.0
+#define kBatteryNotInstalled -1
 
 static void printKeys (const void *key, const void* value, void *context){
     CFShow(CFSTR("Key "));
@@ -36,13 +36,14 @@ static CFStringRef kProductField = CFSTR("Product");
 
 struct bt_power_info_t {
     int batteryPercent;
+    Boolean deviceInstalled;
     CFStringRef productName;
 };
 
 struct bt_power_info_t
 getBatteryPercentForBluetoothClass(const char *class){
     io_iterator_t iter = 0;
-    struct bt_power_info_t powerInfo = {-1, NULL};
+    struct bt_power_info_t powerInfo = {-1, NO, NULL};
     
     CFMutableDictionaryRef m = IOServiceMatching(class);
     if (IOServiceGetMatchingServices(kIOMasterPortDefault, m, &iter) == KERN_SUCCESS){
@@ -57,6 +58,7 @@ getBatteryPercentForBluetoothClass(const char *class){
                     int32_t bp = 0;
                     if (CFNumberGetValue(bp_r, kCFNumberSInt32Type, &bp)){
                         powerInfo.batteryPercent = bp;
+                        powerInfo.deviceInstalled = YES;
                     }
                     
                 }
@@ -75,12 +77,12 @@ getBatteryPercentForBluetoothClass(const char *class){
     return powerInfo;
 }
 
-double
+int
 getSystemBatterPercent(){
     CFTypeRef       info;
     CFArrayRef      list;
     CFDictionaryRef battery;
-    double          batteryPercent = kBatteryNotInstalled;
+    int             batteryPercent = kBatteryNotInstalled;
     
     info = IOPSCopyPowerSourcesInfo();
     if (!info){
@@ -93,20 +95,16 @@ getSystemBatterPercent(){
         goto CLEANUP;
     }
     
-    if (CFArrayGetCount(list) && (battery = IOPSGetPowerSourceDescription(info, 0))){
-        double currentCapacity;
-        double maxCapacity;
+    CFIndex c = CFArrayGetCount(list);
+    if (c > 0){
+        battery = IOPSGetPowerSourceDescription(info, CFArrayGetValueAtIndex(list, 0));
+        int currentCapacity;
         
-        CFNumberRef cc = CFDictionaryGetValue(battery, kIOPSCurrentCapacityKey);
-        CFNumberRef mp = CFDictionaryGetValue(battery, kIOPSMaxCapacityKey);
+        CFNumberRef cc = CFDictionaryGetValue(battery, CFSTR(kIOPSCurrentCapacityKey));
         
-        CFNumberGetValue(cc, kCFNumberDoubleType, &currentCapacity);
-        CFNumberGetValue(mp, kCFNumberDoubleType, &maxCapacity);
-        
-        assert(maxCapacity != 0);
-        
-        batteryPercent = (currentCapacity/maxCapacity) * 100;
-        
+        if (CFNumberGetValue(cc, kCFNumberSInt64Type, &currentCapacity)){
+            batteryPercent = currentCapacity;
+        }
     }
     
     CFRelease(list);
@@ -125,21 +123,25 @@ int main(int argc, const char * argv[])
         NSArray *a = @[@"BNBMouseDevice", @"BNBTrackpadDevice", @"AppleBluetoothHIDKeyboard"];
         for (NSString *str in a) {
             struct bt_power_info_t bp = getBatteryPercentForBluetoothClass([str UTF8String]);
-            printf("%s(%s) -> %d%%\n",
-                   [(__bridge NSString *)bp.productName UTF8String],
-                   [str UTF8String],
-                   bp.batteryPercent);
+            if (bp.deviceInstalled){
+                printf("%s(%s) -> %d%%\n",
+                       [(__bridge NSString *)bp.productName UTF8String],
+                       [str UTF8String],
+                       bp.batteryPercent);
+            } else {
+                printf("No devices of class %s installed.\n", [str UTF8String]);
+            }
             
             if (bp.productName){
                 CFRelease(bp.productName);
             }
         }
         
-        double batteryPercent = getSystemBatterPercent();
+        int batteryPercent = getSystemBatterPercent();
         if (batteryPercent == kBatteryNotInstalled){
             printf("System battery not installed.\n");
         } else {
-            printf("System Battery -> %.2f%%\n", batteryPercent);
+            printf("System Battery -> %d%%\n", batteryPercent);
         }
         
     }
