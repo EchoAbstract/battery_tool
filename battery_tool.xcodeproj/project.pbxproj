@@ -12,7 +12,8 @@
 		D3764A1116C9DAAC0004259F /* battery_tool.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = D3764A1016C9DAAC0004259F /* battery_tool.1 */; };
 		D3764A1816C9E1AE0004259F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3764A1716C9E1AE0004259F /* IOKit.framework */; };
 		D37F6EEA16D0623D00667604 /* string_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = D37F6EE916D0623D00667604 /* string_tools.c */; };
-		D37F6EEE16D181ED00667604 /* color_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = D37F6EED16D181ED00667604 /* color_tools.c */; };
+		D37F6EEE16D181ED00667604 /* format_tools.c in Sources */ = {isa = PBXBuildFile; fileRef = D37F6EED16D181ED00667604 /* format_tools.c */; };
+		D37F6EF116D1A8DE00667604 /* battery.m in Sources */ = {isa = PBXBuildFile; fileRef = D37F6EF016D1A8DE00667604 /* battery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,8 +38,10 @@
 		D3764A1716C9E1AE0004259F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		D37F6EE916D0623D00667604 /* string_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string_tools.c; sourceTree = "<group>"; };
 		D37F6EEB16D0628E00667604 /* string_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = string_tools.h; sourceTree = "<group>"; };
-		D37F6EEC16D181E200667604 /* color_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color_tools.h; sourceTree = "<group>"; };
-		D37F6EED16D181ED00667604 /* color_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = color_tools.c; sourceTree = "<group>"; };
+		D37F6EEC16D181E200667604 /* format_tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = format_tools.h; sourceTree = "<group>"; };
+		D37F6EED16D181ED00667604 /* format_tools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = format_tools.c; sourceTree = "<group>"; };
+		D37F6EEF16D1A8D800667604 /* battery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = battery.h; sourceTree = "<group>"; };
+		D37F6EF016D1A8DE00667604 /* battery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = battery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +87,12 @@
 			isa = PBXGroup;
 			children = (
 				D3764A0C16C9DAAC0004259F /* main.m */,
-				D37F6EE916D0623D00667604 /* string_tools.c */,
-				D37F6EEC16D181E200667604 /* color_tools.h */,
-				D37F6EED16D181ED00667604 /* color_tools.c */,
+				D37F6EEF16D1A8D800667604 /* battery.h */,
+				D37F6EF016D1A8DE00667604 /* battery.m */,
+				D37F6EEC16D181E200667604 /* format_tools.h */,
+				D37F6EED16D181ED00667604 /* format_tools.c */,
 				D37F6EEB16D0628E00667604 /* string_tools.h */,
+				D37F6EE916D0623D00667604 /* string_tools.c */,
 				D3764A1016C9DAAC0004259F /* battery_tool.1 */,
 				D3764A0E16C9DAAC0004259F /* Supporting Files */,
 			);
@@ -155,7 +160,8 @@
 			files = (
 				D3764A0D16C9DAAC0004259F /* main.m in Sources */,
 				D37F6EEA16D0623D00667604 /* string_tools.c in Sources */,
-				D37F6EEE16D181ED00667604 /* color_tools.c in Sources */,
+				D37F6EEE16D181ED00667604 /* format_tools.c in Sources */,
+				D37F6EF116D1A8DE00667604 /* battery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

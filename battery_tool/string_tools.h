@@ -16,6 +16,5 @@ struct term_info {
 
 size_t GetStringLength(const char *str);
 struct term_info GetTermInfo();
-void PrintTwoStrings(char *one, char *two);
 
 #endif

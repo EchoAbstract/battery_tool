@@ -43,8 +43,8 @@ typedef enum escape_code {
 } ESCAPE_CODE;
 
 
-char *
-MakeWarningString(int levels[], int value);
+char *MakeWarningString(int levels[], int value);
+void PrintBatteryInfo(const char *names[], const int percentages[], const int n);
 
 
 #endif
